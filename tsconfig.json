@@ -21,6 +21,6 @@
     "resolveJsonModule": true                 /* Allows importing modules with a ‘.json’ extension, which is a common practice in node projects. */
   },
   "exclude": [
-    "node_modules", "src/components/babel.config.js", "metro.config.js", "jest.config.js"
+    "node_modules", "babel.config.js", "metro.config.js", "jest.config.js"
   ]
 }
