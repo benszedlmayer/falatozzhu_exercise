@@ -6,7 +6,6 @@ This is a CRUD (Create, Read, Update, Delete) React Native app that allows users
 - View a list of all items with their names, descriptions, and quantities
 - Update existing items with new information
 - Delete items from the inventory
-- Responsive CSS design
 
 ## Getting Started
 - Clone the repository
@@ -16,12 +15,7 @@ This is a CRUD (Create, Read, Update, Delete) React Native app that allows users
 ## Requirements
 - React Native
 - npm
-- Mock service for data retrieval
-- API key (if applicable)
 
 ## Contributing
 - Create a new branch for changes and make commits as necessary
 - Submit a pull request for review
-
-## License
-This project is licensed under the MIT License.
