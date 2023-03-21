@@ -1,9 +1,11 @@
-import {Card, Text, Image} from '@rneui/themed';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {Card, Image, Text} from '@rneui/themed';
 import React from 'react';
-import {Alert, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {deleteItem} from '../../services/mockDataService';
+import {Alert, TouchableOpacity, View} from 'react-native';
 
+import {RootParams} from '../../navigation/RootStackParams';
+import {deleteItem, showErrorAlert} from '../../services/mockDataService';
 import {Item} from '../../types/types';
 import style from './WebShopItem.style';
 
@@ -12,7 +14,18 @@ type WebShopItemProps = {
   onDelete: (id: number) => void;
 };
 
+type WebShopItemNavigationProp = StackNavigationProp<RootParams, 'read'>;
+
 const WebShopItem = ({item, onDelete}: WebShopItemProps) => {
+  const navigation = useNavigation<WebShopItemNavigationProp>();
+
+  const onEditPressed = () => {
+    navigation.navigate('createEdit', {
+      mode: 'edit',
+      item,
+    });
+  };
+
   const onDeletePressed = () => {
     Alert.alert(
       'Deleting Item',
@@ -20,7 +33,10 @@ const WebShopItem = ({item, onDelete}: WebShopItemProps) => {
       [
         {
           text: 'Delete',
-          onPress: () => deleteItem(item.id).then(() => onDelete(item.id)),
+          onPress: () =>
+            deleteItem(item.id)
+              .then(() => onDelete(item.id))
+              .catch(showErrorAlert),
           style: 'destructive',
         },
         {
@@ -37,15 +53,17 @@ const WebShopItem = ({item, onDelete}: WebShopItemProps) => {
     <Card>
       <Card.Title>{item.name}</Card.Title>
       <Card.Divider />
-      <Card.Image
-        style={style.image}
-        source={{
-          uri: item.image,
-        }}
-      />
+      {item.image && (
+        <Card.Image
+          style={style.image}
+          source={{
+            uri: item.image,
+          }}
+        />
+      )}
       <Text style={style.description}>{item.description}</Text>
       <View style={style.buttonContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onEditPressed}>
           <Image
             style={style.button}
             source={require('../../assets/icons/icon_edit.png')}

@@ -5,3 +5,9 @@ export type Item = {
   description: string;
   image: string;
 };
+
+export type FormInputs = {
+  name: string;
+  number: string;
+  description: string;
+};
