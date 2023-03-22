@@ -9,8 +9,8 @@ This is a CRUD (Create, Read, Update, Delete) React Native app that allows users
 
 ## Getting Started
 - Clone the repository
-- Install dependencies with ```bash npm install```
-- Start the app with ```bash npm start```
+- Install dependencies with ```npm install```
+- Start the app with ```npm start```
 
 ## Requirements
 - React Native
